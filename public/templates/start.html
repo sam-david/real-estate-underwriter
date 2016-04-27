@@ -1,0 +1,61 @@
+<h2 class='section-heading'>Property Info</h2>
+
+<div class='row'>
+  <div class='large-6 columns'>
+    <div class='row'>
+      Address: <input type="text" id='property-address' g-places-autocomplete ng-model="property.googleAddress" ng-change="updateAddress()"  />
+    </div>
+    <div class='row'>
+      <div class='large-6 columns'>
+        Purchase Price: {{ property.purchasePrice | nfcurrency }} <input type="number" ng-model="property.purchasePrice" />
+      </div>
+      <div class='large-6 columns'>
+        Year Built (optional): <input type="number" ng-model="property.yearBuilt" />
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-6 columns'>
+        Property Name (optional): <input type="text" ng-model="property.name" />
+      </div>
+      <div class='large-6 columns'>
+        Parcel Size(acres)(optional): <input type="number" ng-model="property.parcelSize" />
+      </div>
+    </div>
+    <div class='row'>
+      <div class='large-6 columns'>
+        Garage Parking Spots (optional):<input type="number" ng-model="property.parking.garages" />
+      </div>
+      <div class='large-6 columns'>
+        Open Parking Spots (optional):<input type="number" ng-model="property.parking.openSpaces" />
+      </div>
+    </div>
+  </div>
+  <div class='large-6 columns'>
+    <div class="row start-property-image-box">
+      <img class="start-property-image" ng-src="{{ property.image }}"/></br>
+    </div>
+    <div class="row">
+      Property Image: <input type="file" fileread="property.image" />
+    </div>
+  </div>
+</div>
+
+<h2 class='section-heading'>Loan</h2>
+
+<div class='row'>
+  <div class='large-2 columns'>
+    Amount: {{ property.loan.amount | nfcurrency }} <input type="number" ng-model="property.loan.amount" />
+  </div>
+  <div class='large-2 columns'>
+    Rate: <input type="number" ng-model="property.loan.rate" />
+  </div>
+  <div class='large-2 columns left'>
+    Periods (Years): <input type="number" ng-model="property.loan.amortizationPeriod" />
+  </div>
+
+  <div class='large-2 columns right' ng-hide='property.zillowRates == undefined'>
+    Zillow Rate Suggestions:
+    30 Yr Fixed ({{ property.address.state }}): <span id="zillow-thirty-fixed" >{{ property.zillowRates.thirtyYearFixed }}</span>
+    15 Yr Fixed ({{ property.address.state }}): <span id="zillow-fifteen-fixed" >{{ property.zillowRates.fifteenYearFixed }}</span>
+  </div>
+</div>

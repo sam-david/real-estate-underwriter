@@ -1,0 +1,91 @@
+<h1 class="page-heading"><span ng-show="property.name">{{ property.name }}:</span> Cash Flows</h1>
+
+<div class="row ">
+  <div class="large-5 large-offset-1 columns cash-flow-heading">
+    Project Return: <strong>{{ property.projectReturn()| nfcurrency }}</strong>
+  </div>
+  <div class="large-5 columns cash-flow-heading">
+    IRR: <strong>{{ property.leveredIRR() | percentage:2 }}</strong>
+  </div>
+</div>
+
+<div class="row cash-flow-heading-row">
+  <div class="large-2 columns">
+    Acquisition
+  </div>
+  <div class="large-2 columns">
+    Year 1
+  </div>
+  <div class="large-2 columns">
+    Year 2
+  </div>
+  <div class="large-2 columns">
+    Year 3
+  </div>
+  <div class="large-2 columns">
+    Year 4
+  </div>
+  <div class="large-2 columns left">
+    Year 5
+  </div>
+</div>
+
+<div class="row cash-flow-row">
+  <div class="large-2 columns">
+    <span class='cash-flow-data-label'>Purchase:</span> {{ -(property.purchasePrice) | nfcurrency }}</br>
+    <span class='cash-flow-data-label'>Closing Costs:</span> {{ -(property.acquisitionClosingCosts()) | nfcurrency }}</br>
+    <span class='cash-flow-data-label'>Debt Funding:</span> {{ property.loan.amount | nfcurrency }}</br>
+  </div>
+  <div class="large-2 columns">
+    <span class='cash-flow-data-label'>Net Income:</span> {{ netIncomeStatement.netIncomeYear(1) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    <span class='cash-flow-data-label'>Net Income:</span> {{ netIncomeStatement.netIncomeYear(2) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    <span class='cash-flow-data-label'>Net Income:</span> {{ netIncomeStatement.netIncomeYear(3) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    <span class='cash-flow-data-label'>Net Income:</span> {{ netIncomeStatement.netIncomeYear(4) | nfcurrency }}
+  </div>
+  <div class="large-2 columns left">
+    <span class='cash-flow-data-label'>Net Income:</span> {{ netIncomeStatement.netIncomeYear(5) | nfcurrency }}</br>
+    <span class='cash-flow-data-label'>Sale:</span> {{ property.salePrice() | nfcurrency }}</br>
+    <span class='cash-flow-data-label'>Closing Costs:</span> {{ -(property.saleClosingCosts()) | nfcurrency }}</br>
+    <span class='cash-flow-data-label'>Funding Payback:</span> {{ -(property.loan.presentValueInYear(5)) | nfcurrency }} </br>
+  </div>
+</div>
+
+<div class="row cash-flow-row">
+  <div class="large-2 columns">
+    {{ property.acquisitionTotal() | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    {{ netIncomeStatement.netIncomeYear(1) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    {{ netIncomeStatement.netIncomeYear(2) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    {{ netIncomeStatement.netIncomeYear(3) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    {{ netIncomeStatement.netIncomeYear(4) | nfcurrency }}
+  </div>
+  <div class="large-2 columns left">
+    {{ property.saleTotal() | nfcurrency }}
+  </div>
+</div>
+
+
+
+<div class="row ">
+  <div class="large-2 columns">
+    Exit Cap Rate:
+    <input  type="number" ng-model="property.exitCapRate" />
+  </div>
+  <div class="large-2 columns left">
+    Closing Costs Rate:
+    <input  type="number" ng-model="property.closingCostRate" />
+  </div>
+</div>

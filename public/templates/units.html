@@ -1,0 +1,145 @@
+<h1 class="page-heading"><span ng-show="property.name">{{ property.name }}:</span>  Units</h1>
+
+<div class='row table-heading'>
+  <div class='large-2 columns'>
+    Unit Count
+  </div>
+  <div class='large-2 columns'>
+    Bedrooms
+  </div>
+  <div class='large-2 columns'>
+    Bathrooms
+  </div>
+  <div class='large-2 columns'>
+    Square Feet
+  </div>
+  <div class='large-2 columns left'>
+    Current Rent
+  </div>
+  <div class="large-1 columns left">
+    P/SF
+  </div>
+</div>
+<div ng-repeat="unit in property.units">
+  <div class="row unit">
+    <div class="large-2 columns">
+      <input class="rent-roll-input" type="number" ng-model="unit.count">
+    </div>
+    <div class="large-2 columns">
+      <input class="rent-roll-input" type="number" ng-model="unit.bedroom" />
+    </div>
+    <div class="large-2 columns">
+      <input class="rent-roll-input" type="number" ng-model="unit.bathroom" />
+    </div>
+    <div class="large-2 columns">
+      <input class="rent-roll-input" type="number" ng-model="unit.squareFeet" />
+    </div>
+    <div class="large-2 columns">
+      <input class="rent-roll-input" type="number" ng-model="unit.baseRent" />
+    </div>
+    <div class="large-1 columns text-center">
+      {{ unit.pricePerSF() | currency }}
+    </div>
+    <div class="large-1 columns">
+      <img title="Remove units" src='images/icons/close-black.png' id='remove-unit' ng-click="removeUnit(unit)" class='remove-unit-button right' onmouseover="removeHover(this);" onmouseout="removeUnhover(this);" />
+    </div>
+  </div>
+</div>
+
+<div class="row rent-roll-totals">
+  <div class="large-1 columns">
+    Totals:
+  </div>
+  <div class="large-1 columns">
+    {{ property.unitCount() }} units
+  </div>
+  <div class="large-2 columns">
+    {{ property.bedroomCount() }} br.
+  </div>
+  <div class="large-2 columns">
+    {{ property.bathroomCount() }} ba.
+  </div>
+  <div class="large-2 columns">
+    {{ property.rentableSquareFeet() }} sqft.
+  </div>
+  <div class="large-2 columns left">
+    {{ property.monthlyRent() | currency }}/month
+  </div>
+</div>
+
+<hr>
+
+<h4 class='text-center'>Add Unit</h4>
+<form novalidate>
+  <div class="row unit">
+    <div class="large-2 columns">
+      <div class='rent-roll-label'>Count</div>
+      <input class="rent-roll-input" title='Count' type="number" ng-model="unit.count">
+    </div>
+    <div class="large-2 columns">
+      <div class='rent-roll-label'>Bedroom</div>
+      <input class="rent-roll-input" type="number" ng-model="unit.bedroom" />
+    </div>
+    <div class="large-2 columns">
+      <div class='rent-roll-label'>Bathroom</div>
+      <input class="rent-roll-input" type="number" ng-model="unit.bathroom" />
+    </div>
+    <div class="large-2 columns">
+      <div class='rent-roll-label'>Square Feet</div>
+      <input class="rent-roll-input" type="number" ng-model="unit.squareFeet" />
+    </div>
+    <div class="large-2 columns">
+      <div class='rent-roll-label'>Base Rent</div>
+      <input class="rent-roll-input" type="number" ng-model="unit.baseRent" />
+    </div>
+    <div class="large-1 columns">
+      <img src='images/icons/plus-black.png' title='Add units' id='add-unit' ng-click="submitUnit(unit)" class='add-unit-button right' onmouseover="removeHover(this);" onmouseout="removeUnhover(this);" />
+    </div>
+  </div>
+</form>
+
+<hr>
+
+<h2 class='section-heading'>Annual Rental Assumptions</h2>
+
+<div class='row table-heading'>
+  <div class='large-2 large-offset-1 columns'>
+    Rent Growth
+  </div>
+  <div class='large-2 columns'>
+    Vacancy
+  </div>
+  <div class='large-2 columns'>
+    Concessions
+  </div>
+  <div class='large-2 columns'>
+    Bad Debt
+  </div>
+  <div class='large-2 columns left'>
+    Total Annual Income
+  </div>
+</div>
+<div class='row'>
+  <div ng-repeat="year in annualRentalAssumptions">
+    <div class='row rent-assumption'>
+      <div class='large-1 columns rent-assumption-year'>
+        Year {{ $index + 1 }}
+      </div>
+      <div class='large-2 columns'>
+        <input class='rent-assumption-input' type="number" step=".01" ng-model="year.rentGrowth">
+      </div>
+      <div class='large-2 columns'>
+        <input class='rent-assumption-input' type="number" ng-model="year.vacancy">
+      </div>
+      <div class='large-2 columns'>
+        <input class='rent-assumption-input' type="number" ng-model="year.concessions">
+      </div>
+      <div class='large-2 columns'>
+        <input class='rent-assumption-input' type="number" ng-model="year.badDebt">
+      </div>
+      <div class='large-2 columns left text-center'>
+        {{ netIncomeStatement.totalIncomeYear($index + 1) | nfcurrency }}
+      </div>
+    </div>
+  </div>
+</div>

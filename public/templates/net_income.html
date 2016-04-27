@@ -1,0 +1,361 @@
+<h1 class="page-heading"><span ng-show="property.name">{{ property.name }}:</span> Net Income Statement</h1>
+
+<h2 class="net-income-heading">Income</h2>
+
+<div class='income-container'>
+  <div class="row net-income-row bold">
+    <div class="large-2 large-offset-2 columns text-center">
+      Current Income
+    </div>
+    <div class="large-1 columns">
+      Year 1
+    </div>
+    <div class="large-1 columns">
+      Year 2
+    </div>
+    <div class="large-1 columns">
+      Year 3
+    </div>
+    <div class="large-1 columns">
+      Year 4
+    </div>
+    <div class="large-1 columns left">
+      Year 5
+    </div>
+  </div>
+  <div class="row net-income-row">
+    <div class="large-2 columns">
+      Gross Rent:
+    </div>
+    <div class="large-2 columns text-center">
+      {{ property.grossRent() | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ property.grossRentInYear(1) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ property.grossRentInYear(2) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ property.grossRentInYear(3) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ property.grossRentInYear(4) | nfcurrency }}
+    </div>
+    <div class="large-1 columns left">
+      {{ property.grossRentInYear(5) | nfcurrency }}
+    </div>
+  </div>
+  <div ng-repeat="(title, value) in netIncomeStatement.incomeItems">
+    <div class="row net-income-row">
+      <div class="large-2 columns">
+        {{ title | convertCamelCase }}:
+      </div>
+      <div class="large-2 columns">
+        <input type="number" class='net-income-input' ng-model="netIncomeStatement.incomeItems[title]">
+      </div>
+      <div class="large-1 columns">
+        {{ netIncomeStatement.incomeItemInYear(value, 1) | nfcurrency }}
+      </div>
+      <div class="large-1 columns">
+        {{ netIncomeStatement.incomeItemInYear(value, 2) | nfcurrency }}
+      </div>
+      <div class="large-1 columns">
+        {{ netIncomeStatement.incomeItemInYear(value, 3) | nfcurrency }}
+      </div>
+      <div class="large-1 columns">
+        {{ netIncomeStatement.incomeItemInYear(value, 4) | nfcurrency }}
+      </div>
+      <div class="large-1 columns left">
+        {{ netIncomeStatement.incomeItemInYear(value, 5) | nfcurrency }}
+      </div>
+    </div>
+  </div>
+  <div class="row net-income-row">
+    <div class="large-2 columns">
+      Vacancy (%):
+    </div>
+    <div class="large-1 columns">
+      <input type="number" class='net-income-input' ng-model="property.currentVacancy">
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.currentVacancyAmount() | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.vacancyInYear(1) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.vacancyInYear(2) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.vacancyInYear(3) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.vacancyInYear(4) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense left">
+      {{ property.vacancyInYear(5) | nfcurrency }}
+    </div>
+  </div>
+  <div class="row net-income-row">
+    <div class="large-2 columns">
+      Concessions (%):
+    </div>
+    <div class="large-1 columns">
+      <input type="number" class='net-income-input' ng-model="property.currentConcessions">
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.currentConcessionsAmount() | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.concessionsInYear(1) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.concessionsInYear(2) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.concessionsInYear(3) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.concessionsInYear(4) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense left">
+      {{ property.concessionsInYear(5) | nfcurrency }}
+    </div>
+  </div>
+  <div class="row net-income-row">
+    <div class="large-2 columns">
+      Bad Debt (%):
+    </div>
+    <div class="large-1 columns">
+      <input type="number" class='net-income-input' ng-model="property.currentConcessions">
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.currentBadDebtAmount() | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.badDebtInYear(1) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.badDebtInYear(2) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.badDebtInYear(3) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense">
+      {{ property.badDebtInYear(4) | nfcurrency }}
+    </div>
+    <div class="large-1 columns net-income-expense left">
+      {{ property.badDebtInYear(5) | nfcurrency }}
+    </div>
+  </div>
+  <hr>
+  <div class="row net-income-row">
+    <div class="large-2 columns">
+      Income Total:
+    </div>
+    <div class="large-2 columns text-center">
+      {{ netIncomeStatement.currentTotalIncome() | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.totalIncomeYear(1) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.totalIncomeYear(2) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.totalIncomeYear(3) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.totalIncomeYear(4) | nfcurrency }}
+    </div>
+    <div class="large-1 columns left">
+      {{ netIncomeStatement.totalIncomeYear(5) | nfcurrency }}
+    </div>
+  </div>
+</div>
+<h2 class="net-income-heading">Expenses</h2>
+
+<div ng-repeat="(name, value) in netIncomeStatement.operatingExpenses">
+  <div class="row net-income-row">
+    <div class="large-2 columns">
+      {{ name | convertCamelCase }}:
+    </div>
+    <div class="large-2 columns">
+      <input type="number" class='net-income-input' ng-model="netIncomeStatement.operatingExpenses[name]">
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.expenseInYear(value, 1) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.expenseInYear(value, 2) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.expenseInYear(value, 3) | nfcurrency }}
+    </div>
+    <div class="large-1 columns">
+      {{ netIncomeStatement.expenseInYear(value, 4) | nfcurrency }}
+    </div>
+    <div class="large-1 columns left">
+      {{ netIncomeStatement.expenseInYear(value, 5) | nfcurrency }}
+    </div>
+    <div class="large-1 columns right">
+      <img class='net-income-expense-add-icon right' ng-click="removeExpense(name)" id='expense-remove' title='Remove Expense' src='images/icons/close-circle-red.png' onmouseover="removeHover(this);" onmouseout="removeUnhover(this);" />
+    </div>
+  </div>
+</div>
+
+<div class="row net-income-row">
+  <div class="large-2 columns">
+    Property Tax:
+  </div>
+  <div class="large-1 columns">
+    <input type="number" class='net-income-input' ng-model="property.taxRate">
+  </div>
+  <div class="large-1 columns">
+    {{ property.currentPropertyTax() | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ property.propertyTaxInYear(1) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ property.propertyTaxInYear(2) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ property.propertyTaxInYear(3) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ property.propertyTaxInYear(4) | nfcurrency }}
+  </div>
+  <div class="large-1 columns left">
+    {{ property.propertyTaxInYear(5) | nfcurrency }}
+  </div>
+</div>
+
+<div class='row'>
+  <div class='large-1 columns net-income-expense-add left'>
+    Add Expense <img class='net-income-expense-add-icon right' ng-click="toggleAddExpense()" id='expense-add' title='Add Expense' src='images/icons/plus-circle-light-green.png' onmouseover="removeHover(this);" onmouseout="removeUnhover(this);" />
+  </div>
+</div>
+
+<div ng-show="showAddExpense" class='row net-income-row'>
+  <form novalidate>
+      <div class="large-2 columns">
+        <div class='expense-label'>Name</div>
+        <input class="expense-input" title='Count' type="name" ng-model="expense.name">
+      </div>
+      <div class="large-2 columns">
+        <div class='expense-label'>Amount</div>
+        <input class="expense-input" type="number" ng-model="expense.amount" />
+      </div>
+      <div class="large-1 columns left">
+        <img src='images/icons/plus-green.png' title='Add Expense' id='expense-submit' ng-click="addExpense(expense)" class='expense-submit-button right' onmouseover="removeHover(this);" onmouseout="removeUnhover(this);" />
+      </div>
+      <div class="large-2 columns left">
+        Annual Income (Non rental) Inflation:
+        <input type="number" ng-model="property.incomeInflation" />
+      </div>
+      <div class="large-2 columns left">
+        Annual Expense Inflation: <input type="number" ng-model="property.expenseInflation" />
+      </div>
+  </form>
+</div>
+
+<hr>
+
+<div class="row net-income-total-row">
+  <div class="large-2 columns">
+    Expense Total:
+  </div>
+  <div class="large-2 columns text-center">
+    {{ netIncomeStatement.totalOperatingExpenses() | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.totalOperatingExpensesYear(1) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.totalOperatingExpensesYear(2) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.totalOperatingExpensesYear(3) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.totalOperatingExpensesYear(4) | nfcurrency }}
+  </div>
+  <div class="large-1 columns left">
+    {{ netIncomeStatement.totalOperatingExpensesYear(5) | nfcurrency }}
+  </div>
+</div>
+
+<hr>
+
+<div class="row net-income-total-row">
+  <div class="large-2 columns">
+    Net Operating Income:
+  </div>
+  <div class="large-2 columns text-center">
+    {{ netIncomeStatement.netOperatingIncome() | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netOperatingIncomeYear(1) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netOperatingIncomeYear(2) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netOperatingIncomeYear(3) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netOperatingIncomeYear(4) | nfcurrency }}
+  </div>
+  <div class="large-1 columns left">
+    {{ netIncomeStatement.netOperatingIncomeYear(5) | nfcurrency }}
+  </div>
+</div>
+
+<div class="row net-income-total-row">
+  <div class="large-2 columns">
+    Debt Service:
+  </div>
+  <div class="large-1 large-offset-2 columns">
+    {{ property.loan.annualDebtServicePayment() | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ property.loan.annualDebtServicePayment() | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ property.loan.annualDebtServicePayment() | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ property.loan.annualDebtServicePayment() | nfcurrency }}
+  </div>
+  <div class="large-1 columns left">
+    {{ property.loan.annualDebtServicePayment() | nfcurrency }}
+  </div>
+</div>
+
+<div class="row net-income-total-row">
+  <div class="large-2 columns">
+    Net Income:
+  </div>
+  <div class="large-2 columns text-center">
+    {{ netIncomeStatement.netOperatingIncome() | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netIncomeYear(1) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netIncomeYear(2) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netIncomeYear(3) | nfcurrency }}
+  </div>
+  <div class="large-1 columns">
+    {{ netIncomeStatement.netIncomeYear(4) | nfcurrency }}
+  </div>
+  <div class="large-1 columns left">
+    {{ netIncomeStatement.netIncomeYear(5) | nfcurrency }}
+  </div>
+</div>
+
+

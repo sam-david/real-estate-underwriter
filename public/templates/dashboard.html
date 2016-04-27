@@ -1,0 +1,87 @@
+<div class='row'>
+  <div class='large-6 columns'>
+    <img ng-src="{{ property.image }}" class="property-image" alt="Upload Property Image"/>
+  </div>
+  <div class='large-6 columns'>
+    <h1 class="page-heading">{{ propertyName }}</h1>
+    <h3>{{ property.purchasePrice | nfcurrency }} Cap Rate: {{ property.capRate() | percentage:2 }} IRR: {{ property.leveredIRR() | percentage:2 }} </h3>
+    <div class="property-stats">
+      Year Built: <span class='data-point'>{{ property.yearBuilt }}</span></br>
+      # of Units: <span class='data-point'>{{ property.unitCount() }}</span></br>
+      Address: <span class='data-point'>{{ property.address.string }}</span></br>
+      Net rentable SF: <span class='data-point'>{{ rentableSquareFeet | number }}</span></br>
+      Parcel Size: <span class='data-point'>{{ parcelSize }}</span> acres</br>
+      Parking Spots: <span class='data-point'>G: {{ parking.garages }} O: {{ parking.openSpaces }} </span></br>
+    </div>
+    <div class="property-stats">
+      <div ng-repeat="unit in property.units">
+        {{ unit.bedroom }}x{{ unit.bathroom }}: {{ unit.squareFeet }} sqft. Monthly/Unit: {{ unit.baseRent | nfcurrency }} Annual: {{ unit.grossRent() | nfcurrency }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row cash-flow-row">
+  <div class="large-2 columns">
+    Acquisition:
+    {{ property.acquisitionTotal() | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    Year 1:
+    {{ netIncomeStatement.netIncomeYear(1) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    {{ netIncomeStatement.netIncomeYear(2) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    {{ netIncomeStatement.netIncomeYear(3) | nfcurrency }}
+  </div>
+  <div class="large-2 columns">
+    {{ netIncomeStatement.netIncomeYear(4) | nfcurrency }}
+  </div>
+  <div class="large-2 columns left">
+    {{ property.saleTotal() | nfcurrency }}
+  </div>
+</div>
+
+<div class='row' ng-show="property.googleId">
+  <div class='large-6 columns zillow-box' ng-hide="isEmpty(property.zillowInfo)">
+    Zillow Retrieved Info: <img class='zillow-icon' src='images/zillow.png' />
+    <div class='row'>
+      <div class="large-4 columns">
+        Year Built: <span id='zillow-year-built'>{{ property.zillowInfo.yearBuilt }}</span>
+      </div>
+      <div class="large-4 columns">
+        Last Sold Price: <span id='zillow-sold-price'>{{ property.zillowInfo.lastSoldPrice }}</span>
+      </div>
+      <div class="large-4 columns">
+        Last Sold Date: <span id='zillow-sold-date'>{{ property.zillowInfo.lastSoldDate }}</span>
+      </div>
+    </div>
+    <div class='row'>
+      <div class="large-4 columns">
+        Lot SqFt: <span id='zillow-lot-sqft'>{{ property.zillowInfo.lotSizeSqFt }}</span>
+      </div>
+      <div class="large-4 columns">
+        Finished SqFt: <span id='zillow-finished-sqft'>{{ property.zillowInfo.finishedSqFt }}</span>
+      </div>
+      <div class="large-4 columns">
+        Zestimate: <span id='zillow-zestimate'>${{ property.zillowInfo.zestimate.amount }}</span></br>
+      </div>
+    </div>
+  </div>
+
+  <div class='large-6 columns'>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+      <ui-gmap-marker
+            idKey='property.googleId'
+            coords='marker.coords'
+            >
+      </ui-gmap-marker>
+    </ui-gmap-google-map>
+  </div>
+</div>
+
+<div class='row'>
+</div>
+

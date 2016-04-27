@@ -1,0 +1,252 @@
+/*
+  white: #FCFFF5;
+  white-green: #D1DBBD;
+  olive: #91AA9D;
+  light-blue: #3E606F;
+  dark-blue: #193441;
+*/
+
+.angular-google-map-container { height: 400px; }
+
+.text-center {
+  text-align: center;
+}
+body {
+  background-color: #FCFFF5;
+}
+
+.row {
+  max-width: 95%;
+}
+
+.top-bar {
+  background-color: #193441 !important;
+}
+
+.top-bar a {
+  background-color: #193441 !important;
+}
+
+.top-bar a:hover {
+  background-color: brown !important;
+}
+
+/*Start*/
+
+.start-property-image {
+  border: solid black 2px;
+}
+
+.start-property-image-box {
+  text-align: center;
+}
+
+/*Dashboard*/
+
+.zillow-box {
+  border: solid blue 2px;
+}
+
+.zillow-icon {
+  width: 10%;
+}
+
+.property-stats {
+  font-size: .9em;
+  background-color: #D1DBBD;
+  padding: 2%;
+}
+
+.property-image {
+  border: solid #193441 2px;
+  margin: 3%;
+}
+
+/*Rent roll */
+.unit {
+  border: solid black 2px;
+  padding: .5%;
+  margin-bottom: .5%;
+  background-color: #C3C3C3;
+}
+
+.rent-roll-input {
+  margin-bottom: 0 !important;
+}
+
+.rent-roll-label {
+  text-align: center;
+  color: #193441;
+  pointer: none;
+}
+
+.rent-roll-totals {
+  text-align: center;
+  font-weight: bold;
+}
+
+.rent-roll-container {
+  border: solid black 2px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.remove-unit-button {
+  width: 40%;
+  cursor: pointer;
+}
+
+.add-unit-button {
+  width: 75%;
+  cursor: pointer;
+}
+
+/*Rent assumption */
+
+.rent-assumption {
+  border: solid black 2px;
+  padding: .5%;
+  margin-bottom: .5% !important;
+  background-color: #3E606F;
+}
+
+.rent-assumption-input {
+  margin-bottom: 0 !important;
+}
+
+.rent-assumption-year {
+  text-align: center;
+  color: white;
+}
+
+/*Net Income */
+
+.income-container {
+
+}
+
+.net-income-row {
+  padding: .5%;
+  background-color: #E7E7E7;
+  margin-bottom: .5% !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+.net-income-total-row {
+  padding: .5%;
+  background-color: #E7E7E7;
+  margin-bottom: .5% !important;
+  border: solid black 1px;
+}
+
+.net-income-heading {
+  color: #193441;
+  padding-left: 2%;
+  font-size: 1.4em;
+}
+
+.net-income-stats {
+  padding-left: 4%;
+  font-size: 1.6em;
+}
+
+.net-income-input {
+  margin-bottom: 0 !important;
+  text-align: center;
+}
+
+.net-income-expense {
+  color: #b81c1c;
+}
+
+.net-income-expense-add {
+  font-size: .4em;
+  padding-bottom: 1%;
+}
+
+.net-income-expense-add-icon {
+  width: 20%;
+  cursor: pointer;
+}
+
+.expense-submit-button {
+  cursor: pointer;
+  width: 70%;
+  padding-top: 5%;
+}
+
+.expense-label {
+
+}
+
+.expense-input {
+  margin-bottom: 0 !important;
+  width: 100%;
+  font-size: 1.2em;
+  height: 2.3125rem;
+}
+
+/* Cash Flow */
+
+.cash-flow-row {
+  padding: 1%;
+  background-color: #D1DBBD;
+  margin-bottom: .5% !important;
+  font-size: 1em;
+}
+
+.cash-flow-heading-row {
+  padding: 1%;
+  font-size: 1.4em;
+  font-weight: bold;
+  background-color: #91AA9D;
+  margin-bottom: .5% !important;
+}
+
+.cash-flow-data-label {
+  font-size: .7em;
+}
+
+.cash-flow-heading {
+  font-size: 2em;
+  padding: 1%;
+}
+
+/*Page layout */
+
+.wide-row {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 100%;
+}
+
+.page-heading {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.section-heading {
+  text-align: center;
+  color: #3E606F;
+}
+
+.table-heading {
+  text-align: center;
+}
+
+
+.data-point {
+  font-weight: bold;
+}
+
+.property-stat-data {
+  font-size: .6em;
+}
+
+.negative {
+  color: red;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real Estate ROI</title>
+  <link rel="stylesheet" href="stylesheets/vendor/foundation.min.css">
+  <link rel="stylesheet" href="stylesheets/vendor/default.min.css">
+  <link rel="stylesheet" href="/bower_components/angular-google-places-autocomplete/src/autocomplete.css">
+  <link rel="stylesheet" href="stylesheets/vendor/alertify.min.css">
+  <link rel="stylesheet" href="stylesheets/main.css">
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3oX-agCA402rmR1bdD0i89Ep6_jws2E&libraries=places"></script> -->
+  <script src="javascripts/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="javascripts/vendor/jquery-1.11.1.min.js"></script>
+  <script src="javascripts/vendor/foundation.min.js"></script>
+  <script src="javascripts/vendor/foundation.topbar.js"></script>
+  <script src="javascripts/vendor/alertify.js"></script>
+  <!-- <script src="javascripts/vendor/angular.js"></script> -->
+  <script src='/bower_components/angular/angular.min.js'></script>
+  <script src="javascripts/vendor/angular-ui-router.min.js"></script>
+  <script src="javascripts/vendor/md5.min.js"></script>
+  <script src="javascripts/vendor/angular-gravatar.js"></script>
+  <!-- <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script> -->
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+  <script src='/bower_components/lodash/dist/lodash.min.js'></script>
+  <script src='/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+  <script src='/bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+  <script src="/bower_components/angular-google-places-autocomplete/src/autocomplete.js"></script>
+  <script src="javascripts/trulia.js"></script>
+  <script src="javascripts/google.js"></script>
+  <script src="javascripts/cash_flow.js"></script>
+  <script src="javascripts/utility.js"></script>
+  <script src="javascripts/zillow.js"></script>
+  <script src="javascripts/icon.js"></script>
+  <script src="javascripts/net_income.js"></script>
+  <script src="javascripts/property.js"></script>
+  <script src="javascripts/angularApp.js"></script>
+</head>
+
+<body ng-app="realEstateUnderwriter">
+<div ng-controller="DashboardCtrl">
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">Real Estate Underwriter</a></h1>
+      </li>
+       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="has-dropdown" ng-show="user">
+          <a href="#">My Properties</a>
+          <ul class="dropdown">
+            <li ng-repeat='property in user.properties track by $index'>
+              <a href="#" id='{{ property._id }}' ng-click="loadProperty(property._id)">{{ property.address.string || property.name || "Property " + $index}}</a>
+            </li>
+          </ul>
+        </li>
+        <li class="active" ng-show="user"><a href="#" ng-click='saveProperty()'>Save Property</a></li>
+        <li class='active'><a ui-sref="login" ng-show="!user" class="login-text">Login</a></li>
+        <li> <a href="/logout" ng-show="user" class="login-text">Logout</a></li>
+      </ul>
+
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <li><a ui-sref="start">Start</a></li>
+        <li><a ui-sref="dashboard">Dashboard</a></li>
+        <li><a ui-sref="units">Units</a></li>
+        <li><a ui-sref="net_income">Net Income</a></li>
+        <li><a ui-sref="cash_flow">Cash Flow</a></li>
+      </ul>
+    </section>
+    </nav>
+  <div ui-view></div>
+</div>
+</body>
+</html>
